@@ -1,0 +1,14 @@
+<main class="grid place-items-center pt-4">
+    <router-outlet />
+
+    <p *ngIf="listState.state === 'loading'">Loading...</p>
+    <p *ngIf="listState.state === 'error'">{{listState.error.message}}</p>
+    <ul *ngIf="listState.state === 'success'">
+        <li *ngFor="let task of listState.results">
+            <button [class.line-through]="task.done" (click)="toggleDoneStatus(task)">
+                {{ task.name }}
+            </button>
+        </li>
+
+    </ul>
+</main>
